@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
 const port = 8080;
-//const cors = require('cors');
+const cors = require('cors');
 //const cookieParser = require('cookie-parser');
 //require('dotenv').config();
 
 
 //app.use(cookieParser());
-//app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 require('./server/config/config.mongoose');
 
