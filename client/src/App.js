@@ -8,6 +8,7 @@ import './App.css';
 import Register from './views/Register';
 import Home from './views/Home';
 import Mi from './views/Mi';
+import Login from './views/Login';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/register' element={<Register/>}/>;
           <Route path='/' element={<Home/>}/>;
           <Route path='/mi' element={<Mi/>}/>;
+          <Route path='/login' element={<Login/>}/>;
         </Routes>
       </BrowserRouter>
   );

@@ -13,8 +13,8 @@ module.exports.register = (req, res) => {
 module.exports.login = (req, res) => {
     User.findOne({ email: req.body.email })
         .then(user => {
-            if (user === null) {
-                res.json({ msg: "invalid login attempt" });
+            if (!user) {
+                res.status(403).json({ msg: "invalid login attempt" });
             } else {
                 bcrypt
                     .compare(req.body.password, user.password)
@@ -28,11 +28,11 @@ module.exports.login = (req, res) => {
                             res.cookie("usertoken", myJWT, secretKey, { httpOnly: true }).json({ msg: "userToken creado", id: payload._id });
 
                         } else {
-                            res.json({ msg: "invalid login attempt" });
+                            res.status(403).json({ msg: "invalid login attempt" });
                         }
                     })
                     .catch(err => {
-                        res.json({ msg: "invalid login attempt" })
+                        res.status(403).json({ msg: "invalid login attempt" })
                     });
             }
         })
