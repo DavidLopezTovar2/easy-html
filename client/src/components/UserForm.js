@@ -15,6 +15,7 @@ const UserForm = () => {
     name: "",
     email: "",
     password: "",
+    confirmPassword:""
   });
 
   const formSchema = Yup.object().shape({
@@ -27,7 +28,7 @@ const UserForm = () => {
     password: Yup.string()
       .required("Este campo es requerido")
       .min(3, "Debe tener por lo menos 3 caracteres"),
-    passwordConfirmation: Yup.string()
+    confirmPassword: Yup.string()
       .required("Confirmar contraseña")
       .oneOf([Yup.ref("password")], "Tus contraseña no son iguales"),
   });
@@ -122,7 +123,8 @@ const UserForm = () => {
                     <Form.Control
                       type="password"
                       placeholder="Confirmar contraseña"
-                      {...getFieldProps("passwordConfirmation")}
+                      value={user.confirmPassword}
+                      {...getFieldProps("confirmPassword")}
                     />
                   </Form.Group>
                   {errors.passwordConfirmation && (
