@@ -39,7 +39,7 @@ const Home = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header props='loggedout'/>
+      <Header/>
       <main>
         {/* Hero unit */}
         <Box
