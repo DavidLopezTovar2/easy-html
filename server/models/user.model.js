@@ -1,5 +1,6 @@
+const bcrypt = require('bcrypt')
+
 const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
 
 const UserSchema = new Schema({
     name: {
@@ -11,6 +12,10 @@ const UserSchema = new Schema({
         type: String,
         unique: [true, 'Este correo ya se encuentra registrado'],
         required: [true, 'Debe ingresar email'],
+        validate: {
+            validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
+            message: "Ingresa un email válido"
+        }
     },
     password: {
         type: String,
@@ -18,6 +23,17 @@ const UserSchema = new Schema({
         minlength: [3, 'Debe tener por lo menos 3 caracteres'],
     },
 }, { timestamps: true });
+
+UserSchema.virtual('confirmPassword')
+    .get(() => this._confirmPassword)
+    .set(value => this._confirmPassword = value);
+
+UserSchema.pre('validate', function (next) {
+    if (this.password !== this.confirmPassword) {
+        this.invalidate('confirmPassword', 'Las contraseñas deben coincidir');
+    }
+    next();
+});
 
 UserSchema.pre('save', function (next) {
     bcrypt.hash(this.password, 10)
