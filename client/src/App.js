@@ -7,6 +7,7 @@ import {
 import './App.css';
 import Register from './views/Register';
 import Home from './views/Home';
+import Mi from './views/Mi';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path='/register' element={<Register/>}/>;
           <Route path='/' element={<Home/>}/>;
+          <Route path='/mi' element={<Mi/>}/>;
         </Routes>
       </BrowserRouter>
   );

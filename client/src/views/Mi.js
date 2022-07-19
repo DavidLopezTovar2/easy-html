@@ -1,13 +1,12 @@
+import { Typography } from "@mui/material";
 import React from "react";
+import Container from "react-bootstrap/Container";
 import Header from "../components/Header";
-import UserForm from "../components/UserForm";
-import Typography from "@mui/material/Typography";
-import Container from "react-bootstrap/esm/Container";
 
-const Register = () => {
+const Mi = () => {
   return (
     <>
-      <Header/>
+      <Header props='loggedin' />
       <Container>
         <Typography
           component="h1"
@@ -17,12 +16,11 @@ const Register = () => {
           gutterBottom
           className="mt-4"
         >
-          Registro
+          Mi perfil
         </Typography>
-        <UserForm />
       </Container>
     </>
   );
 };
 
-export default Register;
+export default Mi;
