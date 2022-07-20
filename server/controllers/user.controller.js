@@ -7,7 +7,6 @@ module.exports.register = (req, res) => {
     User.create(req.body.user)
         .then(newUser => res.json({ newUser, msg: "El usuario fue exitosamente registrado" }))
         .catch(err => res.status(500).json({ error: err, msg: 'No se pudo registrar el usuario' }));
-
 }
 
 module.exports.login = (req, res) => {

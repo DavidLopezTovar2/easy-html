@@ -7,6 +7,7 @@ export const createUser = (user) => axios.post('http://localhost:8080/api/users/
 export const login = (user) => axios.post('http://localhost:8080/api/users/login', {
     email: user.email,
     password: user.password
-}, { withCredentials: true })
+}, { withCredentials: true });
 
-export const logout = () => axios.post('http://localhost:8080/api/users/logout')
+export const logout = () => axios.post('http://localhost:8080/api/users/logout',
+{},{ withCredentials: true });
