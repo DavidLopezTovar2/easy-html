@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import Nav from 'react-bootstrap/Nav'
+import Nav from "react-bootstrap/Nav";
 
 const Header = ({ props }) => {
   const logout = () => {
@@ -14,23 +14,19 @@ const Header = ({ props }) => {
   return (
     <AppBar position="relative">
       <Toolbar>
-        <Nav className="justify-content-center" activeKey="/home">
-          <Nav.Item>
-            <Nav.Link href="/home">
-
-            <Typography
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              Easy_HTML
-            </Typography>
-
+        <Nav sx={{ flexGrow: 1 }} className="d-flex justify-content-center" activeKey="/home">
+          <Nav.Item >
+            <Nav.Link className="no-style" href={props ? "/mi" : "/"}>
+              <Typography
+                variant="h6"
+                color="inherit"
+                noWrap                
+              >
+                Easy_HTML
+              </Typography>
             </Nav.Link>
           </Nav.Item>
         </Nav>
-
         {props ? (
           <Button onClick={() => logout()} variant="contained" color="error">
             Logout
