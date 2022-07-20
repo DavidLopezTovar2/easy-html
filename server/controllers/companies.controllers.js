@@ -1,7 +1,7 @@
 const Company = require('../models/companies.model');
 
 module.exports.createCompany = (req, res) => {
-    console.log(req.body)
+
     Company.create(req.body)   
         .then(newCompany => res.json({ newCompany }))
         .catch(err => res.status(500).json({ error: err, msg: 'Ups no hemos podido crear una nueva empresa' }));
@@ -33,8 +33,9 @@ module.exports.deleteCompany = (req, res) => {
 }
 
 module.exports.addProductCompany = (req, res) => {
+
     Company.findByIdAndUpdate(req.params.id,{
-        $push:{ products: { $each: req.body.products }}
+        $push:{ products: req.body.products }
      },
       { new: true })
         .then(company => res.json({ company }))
