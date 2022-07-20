@@ -3,21 +3,44 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import Nav from "react-bootstrap/Nav";
+import { logout } from "../services/user.service";
+import Cookies from 'js-cookie'
 
 const Header = ({ props }) => {
 
-  const logout = () => {
-    // TODO: service to loggout
-  }
-  
+
+  const navigate = useNavigate();
+
+  const logoutFromService = async() => {
+    try{
+      await logout();
+      Cookies.remove('usertoken');
+      navigate('/')
+    }catch(err){
+      console.log(err);
+    }
+  };
+
   return (
     <AppBar position="relative">
       <Toolbar>
-        <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-          Easy_HTML
-        </Typography>
+        <Nav sx={{ flexGrow: 1 }} className="d-flex justify-content-center" activeKey="/home">
+          <Nav.Item >
+            <Nav.Link className="no-style" href={props ? "/mi" : "/"}>
+              <Typography
+                variant="h6"
+                color="inherit"
+                noWrap                
+              >
+                Easy_HTML
+              </Typography>
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
         {props ? (
-          <Button onClick={() => logout()} variant="contained" color="error">
+          <Button onClick={() => logoutFromService()} variant="contained" color="error">
             Logout
           </Button>
         ) : (

@@ -38,3 +38,13 @@ module.exports.login = (req, res) => {
         })
         .catch(err => res.json(err));
 };
+
+module.exports.logout = (_,res) => {
+    try {
+        return res
+                .clearCookie('usertoken')
+                .json({ msg: 'Token eliminado'})
+    }catch(err){
+        return res.status(403).json({ msg: 'Usuario sin token', err })
+    }
+}

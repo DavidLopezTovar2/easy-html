@@ -38,3 +38,13 @@
     transform: rotate(360deg);
   }
 }
+
+.no-style{
+	color: white;
+	font: inherit;
+  text-decoration: inherit;
+}
+
+.no-style:hover{
+  color: white;
+}
