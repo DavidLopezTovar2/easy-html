@@ -13,5 +13,6 @@ app.use(cookieParser());
 
 //Routes
 require('./server/routes/user.routes')(app);
+require('./server/routes/companies.routes')(app);
 
 app.listen(port, () => console.log(`We are listening in the port: ${port}, how cool is that!!!`))
