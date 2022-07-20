@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const companiesSchema = new Schema ({
+const companiesSchema = new Schema({
 
     title: {
         type: String,
@@ -22,7 +22,22 @@ const companiesSchema = new Schema ({
         required: [true, 'Debe tener una imagen de la compañia'],
     },
     products: {
-        type: Array,
+        type: [{
+            nameproduct: {
+                type: String,
+                required: [true, 'Debe tener un nombre valido'],
+                minlength: [5, 'Debe tener un nombre con minimo 10 caracteres']
+            },
+            imageproduct: {
+                type: String,
+                required: [true, 'Debe tener una imagen valida'],
+            },
+            price: {
+                type: Number,
+                required: [true, 'Debe asignar un precio valida'],
+                minlength: [2, 'Debe tener una precio minimo con 2 digitos']
+            }
+        }],
     },
     nameurlcompany: {
         type: String,
@@ -30,14 +45,35 @@ const companiesSchema = new Schema ({
         minlength: [10, 'La URL Debe tener un minimo de 10 caracteres']
     },
     footer: {
-        type: String,
+        type: {
+            address: {
+                type: String,
+                required: true
+            },
+            phone: {
+                type: Number,
+                required: true,
+            },
+            instagram: {
+                type: String,
+                required: true
+            },
+            whatsapp: {
+                type: String,
+                required: true
+            },
+            facebook: {
+                type: String,
+                required: true
+            }
+        },
         required: [true, 'Debe tener un footer valida'],
         minlength: [3, 'Debe tener un footer minimo de 3 caracteres']
     },
     colorpage: {
-        type:String,
-    }, 
-    
+        type: String,
+    },
+
 })
 
 const EasyHTMLCompany = model('EasyHTMLCompany', companiesSchema);
