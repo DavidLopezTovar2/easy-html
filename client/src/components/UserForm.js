@@ -127,9 +127,9 @@ const UserForm = () => {
                       {...getFieldProps("confirmPassword")}
                     />
                   </Form.Group>
-                  {errors.passwordConfirmation && (
+                  {errors.confirmPassword && (
                     <div className="d-flex text-danger error-form">
-                      <p>{errors?.passwordConfirmation}</p>
+                      <p>{errors?.confirmPassword}</p>
                     </div>
                   )}
                 </div>
