@@ -20,6 +20,7 @@ import { getCompanies } from "../services/company.service";
 const Home = () => {
   const navigate = useNavigate();
 
+
   const [companies, setCompanies] = useState([]);
 
   const getCompaniesFromService = async () => {
@@ -37,8 +38,12 @@ useEffect(() => {
 
 }, []);
 
+const GoToUrlCompany = async (nameurlcompany) => {
+  navigate(`/${nameurlcompany}`, { replace: true });
 
-  const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+}
+
+  // const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const theme = createTheme();
 
@@ -130,11 +135,13 @@ useEffect(() => {
                     {company.title} 
                     </Typography>
                     <Typography>
+                      {/* This is a media card. You can use this section to describe
+                      the content.  */}
                       {company.descriptioncompany}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">View</Button>
+                    <Button onClick={() => GoToUrlCompany(company.nameurlcompany)} size="small">View</Button>
                   </CardActions>
                 </Card>
               </Grid>
