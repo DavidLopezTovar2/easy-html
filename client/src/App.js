@@ -6,10 +6,12 @@ import Home from "./views/Home";
 import Mi from "./views/Mi";
 import Login from "./views/Login";
 import CompanyForm from "./views/CompanyForm";
+import ProductForm from './views/ProductForm';
 
 function App() {
   return (
     <BrowserRouter>
+        <Route path='/productform/:id' element={<ProductForm />} />;
       <Routes>
         <Route path="/register" element={<Register />} />;
         <Route path="/" element={<Home />} />;
