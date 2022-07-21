@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -15,9 +15,28 @@ import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import { getCompanies } from "../services/company.service";
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const [companies, setCompanies] = useState([]);
+
+  const getCompaniesFromService = async () => {
+    try {
+        const companyServices = await getCompanies();
+        setCompanies(companyServices.data.companies);
+
+    } catch(err){
+
+    }
+}
+
+useEffect(() => {
+  getCompaniesFromService()
+
+}, []);
+
 
   const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -90,8 +109,10 @@ const Home = () => {
               Mira nuestros proyectos
             </Typography>
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+
+          { companies?.map(company=> (
+            // {cards.map((card) => (
+              <Grid item key={company._id} xs={12} sm={6} md={4}>
                 <Card
                   sx={{
                     height: "100%",
@@ -101,16 +122,15 @@ const Home = () => {
                 >
                   <CardMedia
                     component="img"
-                    image="https://source.unsplash.com/random"
+                    image={company.imgcompany} 
                     alt="random"
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                    {company.title} 
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
+                      {company.descriptioncompany}
                     </Typography>
                   </CardContent>
                   <CardActions>
