@@ -67,8 +67,7 @@ const companiesSchema = new Schema({
                 required: true
             }
         },
-        required: [true, 'Debe tener un footer valida'],
-        minlength: [3, 'Debe tener un footer minimo de 3 caracteres']
+        required: [true, 'Debe tener un footer valida']
     },
     colorpage: {
         type: String,
