@@ -47,3 +47,13 @@ module.exports.logout = (_,res) => {
         return res.status(403).json({ msg: 'Usuario sin token', err })
     }
 }
+
+module.exports.addCompany = (req, res) => {
+
+    User.findByIdAndUpdate(req.params.id,{
+        $push:{ company: req.body.companyId }
+     },
+      { new: true })
+        .then(userUpdated => res.json({ userUpdated }))
+        .catch(err => res.status(500).json({ msg: 'Ups no hemos podido agregar esa compaía al usuario', error: err }));
+}

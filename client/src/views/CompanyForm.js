@@ -63,7 +63,6 @@ const CompanyForm = () => {
     try {
       const newCompany = await createCompany(values);
       const id = newCompany.data.newCompany._id;
-      console.log(newCompany.data.newCompany._id);
       Swal.fire({
         title: "¡Felicidades!",
         text: "Tu página ha sido creado. Vamos a configurar tus productos",
