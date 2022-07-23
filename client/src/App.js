@@ -11,8 +11,8 @@ import ProductForm from './views/ProductForm';
 function App() {
   return (
     <BrowserRouter>
-        <Route path='/productform/:id' element={<ProductForm />} />;
       <Routes>
+        <Route path='/productform/:id' element={<ProductForm />} />;
         <Route path="/register" element={<Register />} />;
         <Route path="/" element={<Home />} />;
         <Route path="/mi" element={<Mi />} />;

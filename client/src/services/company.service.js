@@ -8,3 +8,5 @@ export const AddAProductToCompany = (dataFetched, id) => {
         .then(res => console.log(res))
         .catch(err => console.log(err))
 }
+
+export const getCompanies = () => axios.get('http://localhost:8080/api/companies');

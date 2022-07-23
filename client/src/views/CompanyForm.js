@@ -51,24 +51,26 @@ const CompanyForm = () => {
       .required("Este campo es requerido")
       .min(10, "Debe tener por lo menos 10 caracteres")
       .matches(/^[a-z\s.]+$/, 'Solo alfabeto en minúscula y "." permitido'),
-    address: Yup.string().required("Este campo es requerido"),
-    phone: Yup.string().required("Este campo es requerido"),
-    instagram: Yup.string().required("Este campo es requerido"),
-    whatsapp: Yup.string().required("Este campo es requerido"),
-    facebook: Yup.string().required("Este campo es requerido"),
+    // address: Yup.string().required("Este campo es requerido"),
+    // phone: Yup.string().required("Este campo es requerido"),
+    // instagram: Yup.string().required("Este campo es requerido"),
+    // whatsapp: Yup.string().required("Este campo es requerido"),
+    // facebook: Yup.string().required("Este campo es requerido"),
   });
 
   const handlerSubmit = async (values) => {
     console.log(values);
     try {
-      await createCompany(values);
+      const newCompany = await createCompany(values);
+      const id = newCompany.data.newCompany._id;
+      console.log(newCompany.data.newCompany._id);
       Swal.fire({
         title: "¡Felicidades!",
         text: "Tu página ha sido creado. Vamos a configurar tus productos",
         icon: "success",
         confirmButtonColor: "#0275d8",
       });
-      //TODO navigate("/");
+      navigate(`/productform/${id}`);
     } catch (err) {
       console.log(err);
       Swal.fire({
@@ -235,7 +237,7 @@ const CompanyForm = () => {
                       gutterBottom
                       style={{ fontWeight: 550 }}
                     >
-                      La siguiente sección va a ser el footer de la página
+                      La siguiente sección va a ser el footer de tu página
                     </Typography>
                   </Row>
                   <Row>

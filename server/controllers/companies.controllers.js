@@ -3,7 +3,7 @@ const Company = require('../models/companies.model');
 module.exports.createCompany = (req, res) => {
     console.log(req.body.company);
     Company.create(req.body.company)   
-        .then(newCompany => res.json({ newCompany }))
+        .then(newCompany => res.json({ newCompany, _id: newCompany._id }))
         .catch(err => res.status(500).json({ error: err.errors, msg: 'Ups no hemos podido crear una nueva empresa' }));
 }
 
