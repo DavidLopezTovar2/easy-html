@@ -11,3 +11,9 @@ export const login = (user) => axios.post('http://localhost:8080/api/users/login
 
 export const logout = () => axios.post('http://localhost:8080/api/users/logout',
 {},{ withCredentials: true });
+
+export const addCompanyToUser = (userId, companyId) => axios.put(`http://localhost:8080/api/users/addCompany/${userId}`,{
+    companyId
+},{ withCredentials: true });
+
+
