@@ -16,4 +16,6 @@ export const addCompanyToUser = (userId, companyId) => axios.put(`http://localho
     companyId
 },{ withCredentials: true });
 
+export const getUser = (id) => axios.get(`http://localhost:8080/api/users/${id}`)
+
 

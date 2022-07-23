@@ -63,7 +63,7 @@ const companiesSchema = new Schema({
                 type: String
             }
         },
-        required: [true, 'Debe tener un footer valida']
+        //required: [true, 'Debe tener un footer valida']
     },
     colorpage: {
         type: String,

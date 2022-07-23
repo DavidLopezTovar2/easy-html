@@ -31,7 +31,7 @@ module.exports.login = (req, res) => {
               const myJWT = jwt.sign(payload, secretKey);
               res
                 .cookie("usertoken", myJWT, secretKey, { httpOnly: true })
-                .json({ msg: "userToken creado", id: payload._id });
+                .json({ msg: "userToken creado", userId: payload._id });
             } else {
               res.status(403).json({ msg: "invalid login attempt" });
             }
@@ -66,5 +66,29 @@ module.exports.addCompany = (req, res) => {
         msg: "Ups no hemos podido agregar esa compaía al usuario",
         error: err,
       })
+    );
+};
+
+module.exports.getUser = (req, res) => {
+  User.findById(req.params.id)
+    .then((user) => res.json({ user }))
+    .catch((err) =>
+      res
+        .status(404)
+        .json({ error: err, msg: "Ups no hemos podido traerte el usuario" })
+    );
+};
+
+module.exports.deleteCompanyFromUser = (req, res) => {
+  User.findByIdAndUpdate(
+    req.params.iduser,
+    { $pull: { company: req.params.id } },
+    { new: true }
+  )
+    .then((userUpdated) => res.json({ userUpdated }))
+    .catch((err) =>
+      res
+        .status(500)
+        .json({ msg: "Ups no hemos podido actualizar el usuario", err })
     );
 };
