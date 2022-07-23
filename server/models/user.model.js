@@ -22,6 +22,8 @@ const UserSchema = new Schema({
         required: [true, 'Debe tener una contraseña'],
         minlength: [3, 'Debe tener por lo menos 3 caracteres'],
     },
+    company : {type: Schema.Types.ObjectId,ref:'EasyHTMLCompany'}
+    
 }, { timestamps: true });
 
 UserSchema.virtual('confirmPassword')
