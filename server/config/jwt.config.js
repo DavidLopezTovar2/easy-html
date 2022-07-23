@@ -5,11 +5,9 @@ const secretKey = "caramelo";
 module.exports.authenticate = (req, res, next) => {
 
   jwt.verify(req.cookies.usertoken, secretKey, (err, payload) => {
-
-    console.log("🚀 ~ file: jwt.config.js ~ line 20 ~ jwt.verify ~ usertoken", req)
     if (err) {
  
-      res.status(401).json({ verified: false });
+      res.status(401).json({ verified: false, err });
 
     } else {
 

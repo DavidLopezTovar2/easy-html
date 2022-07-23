@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Typography } from "@mui/material";
+import { addCompanyToUser } from "../services/user.service";
 
 const CompanyForm = () => {
   const navigate = useNavigate();
@@ -62,7 +63,9 @@ const CompanyForm = () => {
     console.log(values);
     try {
       const newCompany = await createCompany(values);
+      console.log(newCompany.data.userId)
       const id = newCompany.data.newCompany._id;
+      await addCompanyToUser(newCompany.data.userId,id)
       Swal.fire({
         title: "¡Felicidades!",
         text: "Tu página ha sido creado. Vamos a configurar tus productos",
@@ -240,7 +243,7 @@ const CompanyForm = () => {
                     </Typography>
                   </Row>
                   <Row>
-                  <Col>
+                    <Col>
                       <div>
                         <Form.Group controlId="nameurl">
                           <Form.Label>Address</Form.Label>
