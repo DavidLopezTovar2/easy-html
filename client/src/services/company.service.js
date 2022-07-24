@@ -5,6 +5,7 @@ export const createCompany = (company) => axios.post('http://localhost:8080/api/
 },{ withCredentials: true });
 
 export const deleteCompany = (id, userId) => axios.delete(`http://localhost:8080/api/companies/delete/${id}/${userId}`,{
+    withCredentials: true
 });
 
 export const AddAProductToCompany = (dataFetched, id) => {

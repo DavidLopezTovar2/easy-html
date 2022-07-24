@@ -7,7 +7,7 @@ module.exports = (app) => {
     app.get('/api/companies/:id', getOneCompany);
     app.post('/api/companies', authenticate, createCompany);
     app.put('/api/companies/update/:id', authenticate, updateCompany);
-    app.delete('/api/companies/delete/:id/:iduser', deleteCompany, deleteCompanyFromUser);
+    app.delete('/api/companies/delete/:id/:iduser', authenticate,deleteCompany, deleteCompanyFromUser);
     app.put('/api/companies/addproduct/:id', authenticate, addProductCompany);
 
 }
