@@ -92,3 +92,8 @@ module.exports.deleteCompanyFromUser = (req, res) => {
         .json({ msg: "Ups no hemos podido actualizar el usuario", err })
     );
 };
+
+module.exports.actualUser = (req,res) => {
+    console.log(req.userId)
+    res.json({ userId: req.userId})
+}

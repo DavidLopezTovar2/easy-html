@@ -5,7 +5,7 @@ const secretKey = "caramelo";
 module.exports.authenticate = (req, res, next) => {
 
   jwt.verify(req.cookies.usertoken, secretKey, (err, payload) => {
-  console.log("req.cookies.usertoken", req.cookies.usertoken)
+  console.log("req.cookies.usertoken - JWT", req.cookies.usertoken)
     
     if (err) {
  
