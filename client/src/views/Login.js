@@ -20,8 +20,8 @@ const Login = () => {
   const handlerSubmit = async (values) => {
     setLoginError(false);
     try {
-      await login(values);
-      navigate("/mi");
+      const loginParams = await login(values);
+      navigate(`/mi/${loginParams.data.userId}`);
     } catch (err) {
         setLoginError(true)
     }

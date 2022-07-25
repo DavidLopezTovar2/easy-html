@@ -15,9 +15,10 @@ function App() {
         <Route path='/productform/:id' element={<ProductForm />} />;
         <Route path="/register" element={<Register />} />;
         <Route path="/" element={<Home />} />;
-        <Route path="/mi" element={<Mi />} />;
+        <Route path="/mi/:id" element={<Mi />} />;
         <Route path="/login" element={<Login />} />;
         <Route path="/create-company" element={<CompanyForm />}/>;
+        <Route path="/edit-company/:id" element={<CompanyForm />}/>;
       </Routes>
     </BrowserRouter>
   );

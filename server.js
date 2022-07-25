@@ -3,6 +3,7 @@ const app = express();
 const port = 8080;
 const cors = require('cors');
 const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser');
 require('dotenv').config();
 
 require('./server/config/config.mongoose');
@@ -11,7 +12,8 @@ app.use(cookieParser());
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 //Routes
 require('./server/routes/user.routes')(app);
 require('./server/routes/companies.routes')(app);
