@@ -55,9 +55,25 @@ const ProductForm = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(validationsErrorMessages);
-  }, [validationsErrorMessages]);
+    const onSubmit = async (data) => {
+        let dataFetched = {
+            products: {
+                nameproduct: data.nameproduct,
+                imageproduct: data.imageproduct,
+                price: data.price
+            }
+        }
+        try {
+            await addAProductToCompany(dataFetched, id)
+            Swal.fire({
+                title: "¡Felicidades!",
+                text: "Has agregado un producto exitosamente",
+                icon: "success",
+                confirmButtonText: 'Listo',
+                footer: `<a href="/productform/${id}">¿Deseas agregar otro producto?</a>`,
+                confirmButtonColor: "#0275d8",
+            });
+            navigate(`/myproducts/${id}`)
 
   return (
     <ThemeProvider theme={theme}>

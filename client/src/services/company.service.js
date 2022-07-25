@@ -14,6 +14,20 @@ export const AddAProductToCompany = (dataFetched, id) => {
         .catch(err => console.log(err))
 }
 
+export const addAListOfProductToCompany = (id, listOfProducts) => {
+    axios.put(`http://localhost:8080/api/companies/addproductlist/${id}`, listOfProducts, { withCredentials: true })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+}
+
+export const getOneCompany = (id) => axios.get(`http://localhost:8080/api/companies/${id}`);
+
+export const getOneCompany2 = (id, setListOfProducts) => {
+    axios.get(`http://localhost:8080/api/companies/${id}`, { withCredentials: true })
+        .then(res => setListOfProducts(res.data.company.products))
+        .catch(err => console.log(err))
+}
+
 export const getCompanies = () => axios.get('http://localhost:8080/api/companies');
 
 export const getOneCompany = (id) => axios.get(`http://localhost:8080/api/companies/${id}`);
