@@ -1,10 +1,10 @@
 const axios = require('axios');
 
-export const createCompany = (company) => axios.post('http://localhost:8080/api/companies',{
+export const createCompany = (company) => axios.post('http://localhost:8080/api/companies', {
     company
-},{ withCredentials: true });
+}, { withCredentials: true });
 
-export const deleteCompany = (id, userId) => axios.delete(`http://localhost:8080/api/companies/delete/${id}/${userId}`,{
+export const deleteCompany = (id, userId) => axios.delete(`http://localhost:8080/api/companies/delete/${id}/${userId}`, {
     withCredentials: true
 });
 
@@ -20,9 +20,12 @@ export const addAListOfProductToCompany = (id, listOfProducts) => {
         .catch(err => console.log(err))
 }
 
-export const getOneCompany2 = (id, setListOfProducts) => {
+export const getOneCompany2 = (id, setListOfProducts, setNameUrlCompany) => {
     axios.get(`http://localhost:8080/api/companies/${id}`, { withCredentials: true })
-        .then(res => setListOfProducts(res.data.company.products))
+        .then(res => {
+            setListOfProducts(res.data.company.products)
+            setNameUrlCompany(res.data.company.nameurlcompany)
+        })
         .catch(err => console.log(err))
 }
 
@@ -30,4 +33,4 @@ export const getCompanies = () => axios.get('http://localhost:8080/api/companies
 
 export const getOneCompany = (id) => axios.get(`http://localhost:8080/api/companies/${id}`);
 
-export const editCompany = (id, values) => axios.put(`http://localhost:8080/api/companies/update/${id}`,{values},{ withCredentials: true}) 
+export const editCompany = (id, values) => axios.put(`http://localhost:8080/api/companies/update/${id}`, { values }, { withCredentials: true }) 

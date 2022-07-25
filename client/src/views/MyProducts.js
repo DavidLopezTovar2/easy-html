@@ -22,6 +22,7 @@ const MyProducts = () => {
     const theme = createTheme();
     const { id } = useParams();
     const [listOfProducts, setListOfProducts] = useState([])
+    const [nameUrlCompany, setNameUrlCompany] = useState([])
     let navigate = useNavigate()
 
     const deleteAProduct = async (idProduct) => {
@@ -60,7 +61,7 @@ const MyProducts = () => {
     }
 
     useEffect(() => {
-        id && getOneCompany2(id, setListOfProducts)
+        id && getOneCompany2(id, setListOfProducts, setNameUrlCompany)
     }, [id])
 
 
@@ -136,7 +137,7 @@ const MyProducts = () => {
                         justifyContent: "space-between"
                     }} >
                     <Link to={`/productform/${id}`}><Button variant="contained">Crear un producto ➕</Button></Link>
-                    <Link to={`/productform/${id}`}><Button variant="contained">Ir a mi página 🏠</Button></Link>
+                    <Button variant="contained" onClick= {() => window.open(`/${nameUrlCompany}`, '_blank')}>Ir a mi página 🏠</Button>
                     </CardActions>
                 </Container>
             </ThemeProvider>
