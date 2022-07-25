@@ -41,34 +41,29 @@ const companiesSchema = new Schema({
     },
     nameurlcompany: {
         type: String,
+        unique: [true, 'Este dominio ya se encuentra ocupado'],
         required: [true, 'Debe asigar un nombre de URL para su pagina'],
         minlength: [10, 'La URL Debe tener un minimo de 10 caracteres']
     },
     footer: {
         type: {
             address: {
-                type: String,
-                required: true
+                type: String
             },
             phone: {
-                type: Number,
-                required: true,
+                type: String
             },
             instagram: {
-                type: String,
-                required: true
+                type: String
             },
             whatsapp: {
-                type: String,
-                required: true
+                type: String
             },
             facebook: {
-                type: String,
-                required: true
+                type: String
             }
         },
-        required: [true, 'Debe tener un footer valida'],
-        minlength: [3, 'Debe tener un footer minimo de 3 caracteres']
+        //required: [true, 'Debe tener un footer valida']
     },
     colorpage: {
         type: String,
