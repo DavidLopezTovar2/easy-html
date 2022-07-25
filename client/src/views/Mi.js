@@ -80,7 +80,7 @@ const Mi = () => {
   };
 
   const editCompany = () => {
-    navigate(`/edit-company/${company._id}`);
+    navigate(`/myproducts/${company._id}`);
   };
 
   return (
@@ -177,7 +177,7 @@ const Mi = () => {
                       onClick={() => editCompany()}
                       size="small"
                     >
-                      Editar
+                      Editar productos
                     </Button>
                   </CardActions>
                 </Card>

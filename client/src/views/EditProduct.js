@@ -70,7 +70,7 @@ const EditProduct = () => {
 
     return (
         <>
-        <Header/>
+        <Header props="loggedin"/>
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />

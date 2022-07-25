@@ -66,7 +66,7 @@ const MyProducts = () => {
 
     return (
         <>
-            <Header/>
+            <Header props="loggedin"    />
             <ThemeProvider theme={theme}>
                 <CssBaseline />
 

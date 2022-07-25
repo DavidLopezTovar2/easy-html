@@ -79,6 +79,7 @@ module.exports.addProductCompany = (req, res) => {
     );
 };
 
+module.exports.addProductCompany  = (req, res) => {
     Company.findByIdAndUpdate(req.params.id, {
         $push: { products: req.body.products }
     },
