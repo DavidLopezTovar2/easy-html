@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
-import { useNavigate } from "react-router-dom";
-import { createCompany } from "../services/company.service";
+import { useNavigate, useParams } from "react-router-dom";
+import { createCompany, editCompany, getOneCompany } from "../services/company.service";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Formik, Form as FormikForm } from "formik";
@@ -20,8 +20,9 @@ import { addCompanyToUser } from "../services/user.service";
 const CompanyForm = () => {
   const navigate = useNavigate();
   const theme = createTheme();
+  const { id } = useParams();
 
-  const [company] = useState({
+  const [company, setCompany] = useState({
     title: "",
     descriptioncompany: "",
     slogan: "",
@@ -36,6 +37,25 @@ const CompanyForm = () => {
     },
     colorpage: "",
   });
+
+  useEffect(() => {
+    startForm();
+  }, [id]);
+
+  useEffect(() => {
+    console.log('useEffect',company)
+  }, [company]);
+
+  const startForm = async () => {
+    try {
+      const companyFromService = await getOneCompany(id);
+      setCompany(companyFromService.data.company);
+      console.log(companyFromService.data.company)
+      console.log('CompanyStat:',company);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const formSchema = Yup.object().shape({
     title: Yup.string()
@@ -59,13 +79,33 @@ const CompanyForm = () => {
     // facebook: Yup.string().required("Este campo es requerido"),
   });
 
+  const editPost = async (values) => {
+    try{
+      await editCompany(id, values);
+      Swal.fire({
+        title: "¡Felicidades!",
+        text: "Tu página ha sido editada.",
+        icon: "success",
+        confirmButtonColor: "#0275d8",
+      });
+      navigate(`/${company.nameurlcompany}`);
+    }catch(err){
+      Swal.fire({
+        title: "Ups!",
+        text: "No se ha podido editar tu página",
+        icon: "error",
+        confirmButtonColor: "#0275d8",
+      });
+    }
+  }
+
   const handlerSubmit = async (values) => {
     console.log(values);
     try {
       const newCompany = await createCompany(values);
-      console.log(newCompany.data.userId)
       const id = newCompany.data.newCompany._id;
-      await addCompanyToUser(newCompany.data.userId,id)
+      await addCompanyToUser(newCompany.data.userId, id);
+      
       Swal.fire({
         title: "¡Felicidades!",
         text: "Tu página ha sido creado. Vamos a configurar tus productos",
@@ -92,7 +132,7 @@ const CompanyForm = () => {
   };
 
   return (
-    <>
+    <>  
       <Header props="loggedin" />
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -105,7 +145,9 @@ const CompanyForm = () => {
               pb: 3,
             }}
           >
-            <Button onClick={() => showTemplate()}>Ver plantilla</Button>
+            {!id && (
+              <Button onClick={() => showTemplate()}>Ver plantilla</Button>
+            )}
           </Box>
           <Row>
             <Typography
@@ -121,10 +163,10 @@ const CompanyForm = () => {
           </Row>
           <Formik
             submitForm
-            initialValues={company}
+            initialValues={company }
             validationSchema={formSchema}
             onSubmit={(values) => {
-              handlerSubmit(values);
+              id ? editPost(values) : handlerSubmit(values);
             }}
           >
             {({ errors, getFieldProps }) => (
@@ -334,22 +376,24 @@ const CompanyForm = () => {
                       </div>
                     </Col>
                   </Row>
-                  <Row>
-                    <Col>
+                  <Row className="d-flex align-items-center mb-3">
+                    <Col lg="2">
                       <Button className="mt-3" variant="primary" type="submit">
-                        Crear Página
+                        {id ? "Editar página" : "Crear Página"}
                       </Button>
                     </Col>
-                    <Col>
-                      <Typography
-                        align="justify"
-                        color="#1769aa"
-                        className="mt-3"
-                        gutterBottom
-                      >
-                        Luego de crear la página vamos a crear los productos.
-                      </Typography>
-                    </Col>
+                    {!id && (
+                      <Col>
+                        <Typography
+                          align="justify"
+                          color="#1769aa"
+                          className="mt-3"
+                          gutterBottom
+                        >
+                          Luego de crear la página vamos a crear los productos.
+                        </Typography>
+                      </Col>
+                    )}
                   </Row>
                 </Container>
               </FormikForm>

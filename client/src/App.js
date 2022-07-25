@@ -18,6 +18,7 @@ function App() {
         <Route path="/mi/:id" element={<Mi />} />;
         <Route path="/login" element={<Login />} />;
         <Route path="/create-company" element={<CompanyForm />}/>;
+        <Route path="/edit-company/:id" element={<CompanyForm />}/>;
       </Routes>
     </BrowserRouter>
   );

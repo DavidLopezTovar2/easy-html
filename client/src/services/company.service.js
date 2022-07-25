@@ -18,4 +18,4 @@ export const getCompanies = () => axios.get('http://localhost:8080/api/companies
 
 export const getOneCompany = (id) => axios.get(`http://localhost:8080/api/companies/${id}`);
 
-
+export const editCompany = (id, values) => axios.put(`http://localhost:8080/api/companies/update/${id}`,{values},{ withCredentials: true}) 
