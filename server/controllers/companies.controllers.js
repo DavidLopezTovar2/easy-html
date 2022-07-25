@@ -2,7 +2,7 @@ const Company = require('../models/companies.model');
 
 module.exports.createCompany = (req, res) => {
 
-    Company.create(req.body)   
+    Company.create(req.body)
         .then(newCompany => res.json({ newCompany }))
         .catch(err => res.status(500).json({ error: err, msg: 'Ups no hemos podido crear una nueva empresa' }));
 }
@@ -15,6 +15,14 @@ module.exports.getAllCompanies = (req, res) => {
 
 module.exports.getOneCompany = (req, res) => {
     Company.findById(req.params.id)
+        .then(company => res.json({ company }))
+        .catch(err => res.status(404).json({ error: err, msg: 'Ups no hemos podido traerte la empresa' }));
+}
+
+module.exports.getOneCompanyUrl = (req, res) => {
+    console.log(req.params)
+    console.log(req.params.nameurlcompany)
+    Company.find( {nameurlcompany: req.params.nameurlcompany} )
         .then(company => res.json({ company }))
         .catch(err => res.status(404).json({ error: err, msg: 'Ups no hemos podido traerte la empresa' }));
 }

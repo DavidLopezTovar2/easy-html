@@ -48,3 +48,82 @@
 .no-style:hover{
   color: white;
 }
+
+.nav-container{
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color:gray ;
+  box-shadow: 4px 4px  0 lightgray;
+  color: white;
+
+}
+
+.mediumtext{
+  display: flex;
+  justify-content:space-evenly;
+  text-align: left;
+  margin-top: 50px;
+}
+
+.mediumtext-slogan{
+  padding-top: 200px;
+}
+
+.CartitasPizza {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  padding-left: 120px;
+  padding-right: 120px;
+  margin-bottom: 30px;
+
+}
+
+.CartitasPizza img {
+  width: 200px;
+  padding-bottom: 10px;
+
+}
+
+.descriptioncompany {
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+.mediumimagen img {
+  width: 800px
+}
+
+.footerpage {
+  display: flex;
+  justify-content:space-evenly;
+  text-align:left;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: lightgray;
+  color:blue;
+
+
+}
+
+.footerpage img {
+  height: 30px;
+}
+.copyright {
+  display: flex;
+  justify-content:center;
+}
+
+#imgservicios {
+
+  height: 500px;
+  margin-left: 180px;
+}
+
+#milogo {
+  height: 70px;
+}

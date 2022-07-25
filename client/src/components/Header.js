@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import { logout } from "../services/user.service";
 import Cookies from 'js-cookie'
+import  milogo  from '../imagesrrss/logo.png';
 
 const Header = ({ props }) => {
 
@@ -28,15 +29,19 @@ const Header = ({ props }) => {
       <Toolbar>
         <Nav sx={{ flexGrow: 1 }} className="d-flex justify-content-center" activeKey="/home">
           <Nav.Item >
+            
             <Nav.Link className="no-style" href={props ? "/mi" : "/"}>
               <Typography
                 variant="h6"
                 color="inherit"
+                display="flex"
                 noWrap                
               >
-                Easy_HTML
+                <img id ="milogo" src={milogo} alt="" />
               </Typography>
+              
             </Nav.Link>
+            
           </Nav.Item>
         </Nav>
         {props ? (
