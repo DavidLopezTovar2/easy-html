@@ -40,10 +40,12 @@ const Header = ({ props }) => {
   return (
     <AppBar position="relative">
       <Toolbar>
-        <Nav sx={{ flexGrow: 1 }} className="d-flex justify-content-center" activeKey="/home">
+        <Box sx={{ flexGrow: 1 }} >
+
+        <Nav sx={{ flexGrow: 1 }} className="d-flex" activeKey="/home">
           <Nav.Item >
             
-            <Nav.Link className="no-style" href={props ? "/mi" : "/"}>
+            <Nav.Link className="no-style" href={props ? `/mi/${user}` : "/"}>
               <Typography
                 variant="h6"
                 color="inherit"
@@ -57,6 +59,7 @@ const Header = ({ props }) => {
             
           </Nav.Item>
         </Nav>
+        </Box>
         {props ? (
           <Button
             onClick={() => logoutFromService()}

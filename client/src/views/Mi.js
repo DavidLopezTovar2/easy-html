@@ -160,7 +160,7 @@ const Mi = () => {
                   </CardContent>
                   <CardActions>
                     <Button
-                      onClick={() => GoToUrlCompany(company.nameurlcompany)}
+                      onClick={() => window.open(`/${company.nameurlcompany}`)}
                       size="small"
                     >
                       View

@@ -100,6 +100,7 @@ useEffect(() => {
             >
               <Button onClick={() => navigate('/login')}variant="contained">Login</Button>
               <Button onClick={() => navigate('/register')} variant="outlined">Registrate</Button>
+              <Button color="error" onClick={() => navigate('/services')} variant="outlined">Servicios</Button>
             </Stack>
           </Container>
         </Box>

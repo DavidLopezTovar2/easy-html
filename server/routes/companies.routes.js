@@ -1,4 +1,4 @@
-const { getAllCompanies, getOneCompany, createCompany, updateCompany, deleteCompany, addProductCompany, addListProductCompany } = require('../controllers/companies.controllers');
+const { getOneCompanyUrl, getAllCompanies, getOneCompany, createCompany, updateCompany, deleteCompany, addProductCompany, addListProductCompany } = require('../controllers/companies.controllers');
 const { authenticate } = require('../config/jwt.config');
 const { deleteCompanyFromUser } = require('../controllers/user.controller');
 

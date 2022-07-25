@@ -4,7 +4,6 @@ export const createCompany = (company) => axios.post('http://localhost:8080/api/
     company
 },{ withCredentials: true });
 
-export const getOneCompany=(id) => axios.get(`http://localhost:8080/api/companies/${id}`); 
 
 export const getCompanyUrl=(nameurlcompany) => axios.get(`http://localhost:8080/api/companies/url/${nameurlcompany}`); 
 
