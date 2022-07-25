@@ -78,3 +78,21 @@ module.exports.addProductCompany = (req, res) => {
         })
     );
 };
+
+    Company.findByIdAndUpdate(req.params.id, {
+        $push: { products: req.body.products }
+    },
+        { new: true })
+        .then(company => res.json({ company }))
+        .catch(err => res.status(500).json({ msg: 'Ups no hemos podido agregar un producto a la Empresa', error: err }));
+}
+
+module.exports.addListProductCompany = (req, res) => {
+
+    Company.findByIdAndUpdate(req.params.id,
+        { products: req.body },
+        { new: true })
+        .then(company => res.json({ company }))
+        .catch(err => res.status(500).json({ msg: 'Ups no hemos podido agregar la lista de productos a la Empresa', error: err }));
+}
+

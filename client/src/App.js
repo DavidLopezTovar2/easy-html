@@ -7,12 +7,16 @@ import Mi from "./views/Mi";
 import Login from "./views/Login";
 import CompanyForm from "./views/CompanyForm";
 import ProductForm from './views/ProductForm';
+import MyProducts from "./views/MyProducts";
+import EditProduct from "./views/EditProduct";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/productform/:id' element={<ProductForm />} />;
+        <Route path="/myproducts/:id" element={<MyProducts />}/>;
+        <Route path="/editproduct/:id/:idproduct" element={<EditProduct />}/>;
         <Route path="/register" element={<Register />} />;
         <Route path="/" element={<Home />} />;
         <Route path="/mi/:id" element={<Mi />} />;
