@@ -105,13 +105,12 @@ useEffect(() => {
           </Container>
         </Box>
         <Container sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
           <Typography
               variant="h5"
               color="text"
               paragraph
             >
-              Mira nuestros proyectos
+              {companies.length > 0 && 'Mira nuestros proyectos'}
             </Typography>
           <Grid container spacing={4}>
 
@@ -156,14 +155,6 @@ useEffect(() => {
       {/* Footer */}
       <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
         <Typography variant="h6" align="center" gutterBottom>
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
         </Typography>
         <Copyright />
       </Box>
